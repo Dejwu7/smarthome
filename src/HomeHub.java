@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeHub {
-    List<Object> devices = new ArrayList<>();
+    List<SmartDevice> devices = new ArrayList<>();
     private static final HomeHub instance = new HomeHub();
 
     private HomeHub() {
@@ -12,7 +12,7 @@ public class HomeHub {
         return instance;
     }
 
-    public List<Object> getDevices() {
+    public List<SmartDevice> getDevices() {
         return devices;
     }
 }
