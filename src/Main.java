@@ -1,3 +1,7 @@
 void main() {
-    System.out.println( "Hello World!");
+    try {
+        SmartDevice washingMachine = new SmartDevice.Builder(1, "Pralka").withMacAddress("123456789").build();
+    } catch (Exception e) {
+        System.err.println(e.getMessage());
+    };
 }

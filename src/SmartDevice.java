@@ -1,5 +1,5 @@
 public class SmartDevice {
-    private String id;
+    private int id;
     private String name;
     private String room;
     private String macAddress;
@@ -13,7 +13,7 @@ public class SmartDevice {
         this.firmwareVersion = builder.firmwareVersion;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -34,13 +34,13 @@ public class SmartDevice {
     }
 
     public static class Builder {
-        private String id;
+        private int id;
         private String name;
         private String room = "Not assigned";
         private String macAddress = "Not defined";
         private double firmwareVersion = 0.0;
 
-        public Builder(String id, String name) {
+        public Builder(int id, String name) {
             this.id = id;
             this.name = name;
         }
@@ -51,8 +51,12 @@ public class SmartDevice {
         }
 
         public Builder withMacAddress(String macAddress) {
-            this.macAddress = macAddress;
-            return this;
+            if (macAddress.length() < 17 && !macAddress.contains(":")) {
+                throw new IllegalArgumentException("Invalid MAC address format");
+            } else {
+                this.macAddress = macAddress;
+                return this;
+            }
         }
 
         public Builder withFirmwareVersion(double firmwareVersion) {
