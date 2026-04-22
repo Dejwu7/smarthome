@@ -5,8 +5,7 @@ public class HomeHub {
     public List<SmartDevice> devices = new ArrayList<>();
     private static final HomeHub instance = new HomeHub();
 
-    private HomeHub() {
-    }
+    private HomeHub() { }
 
     public static HomeHub getInstance() {
         return instance;
