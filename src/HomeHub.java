@@ -14,4 +14,13 @@ public class HomeHub {
     public List<SmartDevice> getDevices() {
         return devices;
     }
+
+    public void registerDevice(SmartDevice device) throws DuplicateDeviceException{
+        for (SmartDevice smartDevice : devices) {
+            if (smartDevice.getId() == device.getId() || smartDevice.getMacAddress().equals( device.getMacAddress())) {
+                throw new DuplicateDeviceException("Istnieje już takie urządzenie");
+            }
+        }
+        devices.add(device);
+    }
 }
