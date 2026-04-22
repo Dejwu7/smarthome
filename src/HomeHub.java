@@ -2,11 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeHub {
-    List<SmartDevice> devices = new ArrayList<>();
+    public List<SmartDevice> devices = new ArrayList<>();
     private static final HomeHub instance = new HomeHub();
 
-    private HomeHub() {
-    }
+    private HomeHub() {}
 
     public static HomeHub getInstance() {
         return instance;

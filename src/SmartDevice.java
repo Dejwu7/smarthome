@@ -33,6 +33,7 @@ public class SmartDevice {
         return firmwareVersion;
     }
 
+
     public static class Builder {
         private int id;
         private String name;
@@ -50,9 +51,9 @@ public class SmartDevice {
             return this;
         }
 
-        public Builder withMacAddress(String macAddress) {
+        public Builder withMacAddress(String macAddress) throws InvalidMacAddressException{
             if (macAddress.length() < 17 && !macAddress.contains(":")) {
-                throw new IllegalArgumentException("Invalid MAC address format");
+                throw new InvalidMacAddressException("Invalid MAC address format");
             } else {
                 this.macAddress = macAddress;
                 return this;
