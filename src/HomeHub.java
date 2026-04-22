@@ -27,4 +27,5 @@ public class HomeHub {
     public List<SmartDevice> getDevicesByRoom() {
         return  devices.stream().sorted().toList();
     }
+
 }

@@ -78,4 +78,5 @@ public class SmartDevice implements Comparable {
             return new SmartDevice(this);
         }
     }
+
 }
