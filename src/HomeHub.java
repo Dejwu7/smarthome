@@ -5,7 +5,8 @@ public class HomeHub {
     public List<SmartDevice> devices = new ArrayList<>();
     private static final HomeHub instance = new HomeHub();
 
-    private HomeHub() {}
+    private HomeHub() {
+    }
 
     public static HomeHub getInstance() {
         return instance;
@@ -15,12 +16,16 @@ public class HomeHub {
         return devices;
     }
 
-    public void registerDevice(SmartDevice device) throws DuplicateDeviceException{
+    public void registerDevice(SmartDevice device) throws DuplicateDeviceException {
         for (SmartDevice smartDevice : devices) {
-            if (smartDevice.getId() == device.getId() || smartDevice.getMacAddress().equals( device.getMacAddress())) {
+            if (smartDevice.getId() == device.getId() || smartDevice.getMacAddress().equals(device.getMacAddress())) {
                 throw new DuplicateDeviceException("Istnieje już takie urządzenie");
             }
         }
         devices.add(device);
+    }
+
+    public List<SmartDevice> getDevicesByRoom() {
+        return  devices.stream().sorted().toList();
     }
 }
