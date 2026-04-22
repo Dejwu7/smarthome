@@ -6,5 +6,5 @@ void main() {
         System.out.println(HomeHub.getInstance().getDevicesByRoom());
     } catch (Exception e) {
         System.err.println(e.getMessage());
-    };
+    }
 }

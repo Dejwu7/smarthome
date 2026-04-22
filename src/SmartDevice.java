@@ -40,7 +40,6 @@ public class SmartDevice implements Comparable {
             return this.room.compareTo(otherDevice.room);
         }
 
-
         return this.name.compareTo(otherDevice.name);
     }
 
