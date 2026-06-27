@@ -33,4 +33,13 @@ public class HomeHub implements SensorObserver {
         return  devices.stream().sorted().toList();
     }
 
+    public void runDiagnostics() {
+        System.out.println("\n=== RAPORT SPRZĘTOWY ===");
+        DiagnosticsVisitor visitor = new DiagnosticsVisitor();
+        for (ManageableDevice device : devices) {
+            device.accept(visitor);
+        }
+        System.out.println(visitor.getReport());
+    }
+
 }
