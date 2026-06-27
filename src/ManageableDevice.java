@@ -7,4 +7,5 @@ public interface ManageableDevice {
     String getMacAddress();
     String getName();
     String getRoom();
+    void accept(DeviceVisitor visitor);
 }

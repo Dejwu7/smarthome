@@ -61,6 +61,11 @@ public class SmartDevice implements ManageableDevice, Comparable {
         return this.name.compareTo(otherDevice.name);
     }
 
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visit(this);
+    }
+
     public static class Builder {
         private int id;
         private String name;

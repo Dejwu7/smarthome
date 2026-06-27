@@ -36,4 +36,9 @@ public class ThermostatAdapter implements ManageableDevice {
             }
         }
     }
+
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visit(this);
+    }
 }

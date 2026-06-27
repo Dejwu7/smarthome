@@ -21,4 +21,9 @@ public class SmartBlind implements ManageableDevice {
     @Override public String getMacAddress() { return "00:00:00:00:00:00"; }
     @Override public String getName() { return "Rolety Antywłamaniowe"; }
     @Override public String getRoom() { return "Cały dom"; }
+
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visit(this);
+    }
 }

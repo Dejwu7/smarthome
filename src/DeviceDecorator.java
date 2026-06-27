@@ -12,4 +12,8 @@ public abstract class DeviceDecorator implements ManageableDevice {
     @Override public String getMacAddress() { return decoratedDevice.getMacAddress(); }
     @Override public String getName() { return decoratedDevice.getName(); }
     @Override public String getRoom() { return decoratedDevice.getRoom(); }
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        decoratedDevice.accept(visitor);
+    }
 }
