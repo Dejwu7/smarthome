@@ -1,9 +1,10 @@
-public class SmartDevice implements Comparable {
+public class SmartDevice implements ManageableDevice, Comparable {
     private int id;
     private String name;
     private String room;
     private String macAddress;
     private double firmwareVersion;
+    private boolean isOn = false;
 
     private SmartDevice(Builder builder) {
         this.id = builder.id;
@@ -31,6 +32,23 @@ public class SmartDevice implements Comparable {
 
     public double getFirmwareVersion() {
         return firmwareVersion;
+    }
+
+    @Override
+    public void turnOn() {
+        this.isOn = true;
+        System.out.println("[SmartDevice] " + getName() + " włączone.");
+    }
+
+    @Override
+    public void turnOff() {
+        this.isOn = false;
+        System.out.println("[SmartDevice] " + getName() + " wyłączone.");
+    }
+
+    @Override
+    public String getStatus() {
+        return getName() + " (Pokój: " + getRoom() + ") - Stan: " + (isOn ? "ON" : "OFF");
     }
 
     @Override

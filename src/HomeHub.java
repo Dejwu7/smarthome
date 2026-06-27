@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeHub {
-    public List<SmartDevice> devices = new ArrayList<>();
+    private final List<ManageableDevice> devices = new ArrayList<>();
     private static final HomeHub instance = new HomeHub();
 
     private HomeHub() { }
@@ -11,12 +11,12 @@ public class HomeHub {
         return instance;
     }
 
-    public List<SmartDevice> getDevices() {
+    public List<ManageableDevice> getDevices() {
         return devices;
     }
 
     public void registerDevice(SmartDevice device) throws DuplicateDeviceException {
-        for (SmartDevice smartDevice : devices) {
+        for (ManageableDevice smartDevice : devices) {
             if (smartDevice.getId() == device.getId() || smartDevice.getMacAddress().equals(device.getMacAddress())) {
                 throw new DuplicateDeviceException("Istnieje już takie urządzenie");
             }
@@ -24,7 +24,7 @@ public class HomeHub {
         devices.add(device);
     }
 
-    public List<SmartDevice> getDevicesByRoom() {
+    public List<ManageableDevice> getDevicesByRoom() {
         return  devices.stream().sorted().toList();
     }
 
