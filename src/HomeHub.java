@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeHub {
+public class HomeHub implements SensorObserver {
     private final List<ManageableDevice> devices = new ArrayList<>();
     private static final HomeHub instance = new HomeHub();
 
@@ -22,6 +22,11 @@ public class HomeHub {
             }
         }
         devices.add(device);
+    }
+
+    @Override
+    public void onSensorTriggered(String sensorId, String eventDetails) {
+        System.out.println("ALARM: Wykryto zdarzenie z czujnika [" + sensorId + "] - " + eventDetails);
     }
 
     public List<ManageableDevice> getDevicesByRoom() {
