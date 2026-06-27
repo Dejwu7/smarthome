@@ -4,6 +4,7 @@ public class ThermostatAdapter implements ManageableDevice {
     private String room = "Not assigned";
     private String macAddress;
     private LegacyThermostat legacyThermostat;
+    private HeatingStrategy strategy;
 
     public ThermostatAdapter(int id, String macAddress, LegacyThermostat legacyThermostat) {
         this.id = id;
@@ -18,4 +19,21 @@ public class ThermostatAdapter implements ManageableDevice {
     @Override public String getMacAddress() { return macAddress; }
     @Override public String getName() { return name; }
     @Override public String getRoom() { return room; }
+
+    public void setStrategy(HeatingStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void evaluateTemperature(boolean isSomeoneHome) {
+        if (strategy != null) {
+            double current = legacyThermostat.fetchCurrentTemperature();
+            double target = strategy.calculateTargetTemperature(current, isSomeoneHome);
+            System.out.println("[Termostat] Obecna temp: " + current + "C. Cel: " + target + "C.");
+            if (current < target) {
+                turnOn();
+            } else {
+                turnOff();
+            }
+        }
+    }
 }
